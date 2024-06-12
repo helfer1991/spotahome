@@ -16,6 +16,7 @@ const typeDefs = gql`
 		url: String
 		title: String
 		city: String
+		street: String
 		description: String
 		pictures: [String]
 	}
