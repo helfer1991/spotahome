@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import type { Product } from './products-list-container';
 import { Container } from './styles';
 import { Table } from '../table/table';

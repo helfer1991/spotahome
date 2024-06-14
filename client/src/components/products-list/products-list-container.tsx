@@ -1,5 +1,4 @@
-// src/ProductList.tsx
-import React, { useState, useReducer } from 'react';
+import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_PRODUCTS } from '../../queries';
 import { ProductsList } from './products-list';
