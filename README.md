@@ -39,3 +39,19 @@ Hope you enjoy!
 ## Time spent
 
 7 hours. 2h for planning the structure of the project and setting everything up, 4h for coding and refactoring and 1h for unit tests.
+
+## Steps to build, run and test the app
+
+### Backend
+
+cd server
+npm install
+node server.js
+npm test
+
+### Frontend
+
+cd client
+npm install
+npm start
+npm test
