@@ -37,7 +37,7 @@ export const ProductsList: React.FC<ProductsListProps> = ({ productsList }) => {
 	};
 
 	return (
-		<Container data-testid='Products-List'>
+		<Container>
 			<SelectSort
 				sortOption={sortOption}
 				handleSortOption={handleSortChange}
