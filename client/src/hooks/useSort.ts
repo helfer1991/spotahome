@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import type { Product } from '../products-list/products-list-container';
+import type { Product } from '../components/products-list/products-list-container';
 
 const ITEMS_PER_PAGE = 10;
 

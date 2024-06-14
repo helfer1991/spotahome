@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProductsListContainer } from './products-list/products-list-container';
+import { ProductsListContainer } from './components/products-list/products-list-container';
 import { Header } from './components/header';
 import { Footer } from './components/footer';
 

@@ -13,7 +13,7 @@ import {
 	Price,
 } from './styles';
 
-import type { Product } from '../../products-list/products-list-container';
+import type { Product } from '../products-list/products-list-container';
 
 type TableProps = {
 	products: Array<Product>;

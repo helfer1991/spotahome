@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Table } from '../table';
-import type { Product } from '../../../products-list/products-list-container';
+import type { Product } from '../../products-list/products-list-container';
 
 const mockProduct: Product = {
 	id: '1',
