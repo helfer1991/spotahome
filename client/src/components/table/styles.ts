@@ -60,7 +60,7 @@ export const Link = styled.a`
 	}
 `;
 
-export const Description = styled.p`
+export const Paragraph = styled.p`
 	margin: 0;
 	color: #666;
 `;
@@ -68,9 +68,4 @@ export const Description = styled.p`
 export const Price = styled.span`
 	font-weight: bold;
 	color: #2ecc71;
-`;
-
-export const Street = styled.p`
-	margin: 0;
-	color: #666;
 `;

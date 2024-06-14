@@ -9,9 +9,8 @@ import {
 	TableCell,
 	Image,
 	Link,
-	Description,
+	Paragraph,
 	Price,
-	Street,
 } from './styles';
 
 import type { Product } from '../../products-list/products-list-container';
@@ -28,43 +27,47 @@ export const Table: React.FC<TableProps> = ({ products }) => (
 					<TableHeader>Image</TableHeader>
 					<TableHeader>Title</TableHeader>
 					<TableHeader>Price</TableHeader>
-					<TableHeader>Street</TableHeader>
+					<TableHeader>City</TableHeader>
 					<TableHeader>Bedrooms</TableHeader>
 					<TableHeader>URL</TableHeader>
 				</tr>
 			</TableHead>
 			<TableBody>
-				{products.map((item, index) => (
-					<TableRow key={index}>
-						<TableCell>
-							<Image
-								src={item.pictures[0]}
-								alt='product'
-							/>
-						</TableCell>
-						<TableCell>
-							<Description>{item.title}</Description>
-						</TableCell>
-						<TableCell>
-							<Price>{item.total_rent}€</Price>
-						</TableCell>
-						<TableCell>
-							<Street>{item.street}</Street>
-						</TableCell>
-						<TableCell>
-							<Street>{item.bedrooms}</Street>
-						</TableCell>
-						<TableCell>
-							<Link
-								href={item.url}
-								target='_blank'
-								rel='noopener noreferrer'
-							>
-								More info
-							</Link>
-						</TableCell>
-					</TableRow>
-				))}
+				{products.map((item) => {
+					const capitalizedCity =
+						item.city.charAt(0).toUpperCase() + item.city.slice(1);
+					return (
+						<TableRow key={item.id}>
+							<TableCell>
+								<Image
+									src={item.pictures[0]}
+									alt='product-image'
+								/>
+							</TableCell>
+							<TableCell>
+								<Paragraph>{item.title}</Paragraph>
+							</TableCell>
+							<TableCell>
+								<Price>{item.total_rent}€</Price>
+							</TableCell>
+							<TableCell>
+								<Paragraph>{capitalizedCity}</Paragraph>
+							</TableCell>
+							<TableCell>
+								<Paragraph>{item.bedrooms}</Paragraph>
+							</TableCell>
+							<TableCell>
+								<Link
+									href={item.url}
+									target='_blank'
+									rel='noopener noreferrer'
+								>
+									More info
+								</Link>
+							</TableCell>
+						</TableRow>
+					);
+				})}
 			</TableBody>
 		</StyledTable>
 	</TableContainer>

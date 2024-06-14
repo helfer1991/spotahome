@@ -15,8 +15,8 @@ export type Product = {
 	title: string;
 	city: string;
 	description: string;
-	pictures: string[];
 	street: string;
+	pictures: string[];
 };
 
 export const ProductsListContainer: React.FC = () => {

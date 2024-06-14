@@ -13,7 +13,7 @@ import {
 } from './styles';
 
 export const TableSkeleton: React.FC = () => (
-	<SkeletonContainer>
+	<SkeletonContainer data-testid='table-skeleton'>
 		<SkeletonTable>
 			<SkeletonTableHead>
 				<tr>
