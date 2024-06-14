@@ -1,59 +1,33 @@
 import { useState, useEffect } from 'react';
 import type { Product } from '../components/products-list/products-list-container';
 
-const ITEMS_PER_PAGE = 10;
+type SortOption = 'price' | 'title' | 'bedrooms' | '';
 
-export const useSortedProducts = (
+export const useSort = (
 	productsList: Array<Product>,
-	initialSortOption: string = 'price'
+	sortOption: SortOption
 ) => {
-	const [curPage, setCurPage] = useState<number>(1);
-	const [sortedList, setSortedList] = useState<Array<Product>>([]);
-	const [curPageItems, setCurPageItems] = useState<Array<Product>>([]);
-	const [sortOption, setSortOption] = useState<string>(initialSortOption);
+	const [sortedList, setSortedList] = useState<Array<Product>>(productsList);
 
 	useEffect(() => {
-		sortList(initialSortOption);
-	}, [productsList]);
+		const sortList = (option: SortOption) => {
+			const sorted = [...productsList].sort((a, b) => {
+				switch (option) {
+					case 'price':
+						return Number(a.total_rent) - Number(b.total_rent);
+					case 'title':
+						return a.title.localeCompare(b.title);
+					case 'bedrooms':
+						return Number(a.bedrooms) - Number(b.bedrooms);
+					default:
+						return 0;
+				}
+			});
+			setSortedList(sorted);
+		};
 
-	const sortList = (option: string) => {
-		const sorted = [...productsList].sort((a, b) => {
-			switch (option) {
-				case 'price':
-					return Number(a.total_rent) - Number(b.total_rent);
-				case 'city':
-					return a.city.localeCompare(b.city);
-				case 'bedrooms':
-					return Number(a.bedrooms) - Number(b.bedrooms);
-				case 'area':
-					return Number(a.area) - Number(b.area);
-				default:
-					return 0;
-			}
-		});
-		setCurPage(1);
-		setSortedList(sorted);
-		setCurPageItems(sorted.slice(0, ITEMS_PER_PAGE));
-	};
+		sortList(sortOption);
+	}, [productsList, sortOption]);
 
-	const handleSortChange = (option: string) => {
-		setSortOption(option);
-		sortList(option);
-	};
-
-	const handleClickFetchMore = () => {
-		setCurPage((prevPage: number) => {
-			const newPage = prevPage + 1;
-			const newItems = sortedList.slice(0, ITEMS_PER_PAGE * newPage);
-			setCurPageItems(newItems);
-			return newPage;
-		});
-	};
-
-	return {
-		curPageItems,
-		sortOption,
-		handleSortChange,
-		handleClickFetchMore,
-	};
+	return sortedList;
 };
