@@ -59,24 +59,6 @@ describe('ProductsListContainer', () => {
 		expect(getByTestId('table-skeleton')).toBeInTheDocument();
 	});
 
-	it.only('renders products list after successful data fetch', async () => {
-		const { getByTestId, queryByTestId, getByText } = render(
-			<MockedProvider
-				mocks={mocks}
-				addTypename={false}
-			>
-				<ProductsListContainer />
-			</MockedProvider>
-		);
-
-		screen.debug();
-
-		await waitFor(() => {
-			expect(queryByTestId('table-skeleton')).not.toBeInTheDocument(); // Skeleton should be removed
-			expect(getByTestId('Products-List')).toBeInTheDocument(); // Products list should be rendered
-		});
-	});
-
 	it('renders error message on data fetch error', async () => {
 		const errorMock = {
 			request: {

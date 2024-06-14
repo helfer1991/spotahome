@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import type { Product } from './products-list-container';
 import { Container } from './styles';
 import { Table } from '../components/table/table';
@@ -14,20 +14,11 @@ const ITEMS_PER_PAGE = 10;
 
 export const ProductsList: React.FC<ProductsListProps> = ({ productsList }) => {
 	const [curPage, setCurPage] = useState<number>(1);
-
+	const [sortedList, setSortedList] = useState<Array<Product>>(productsList);
 	const [curPageItems, setCurPageItems] = useState<Array<Product>>(
 		productsList.slice(0, ITEMS_PER_PAGE)
 	);
 	const [sortOption, setSortOption] = useState<string>('');
-
-	const handleClickSortByPrice = () => {
-		const sorted = [...productsList].sort(
-			(a, b) => Number(a.total_rent) - Number(b.total_rent)
-		);
-		setCurPage(1);
-		//setSortedList(sorted);
-		setCurPageItems(sorted.slice(0, ITEMS_PER_PAGE));
-	};
 
 	const handleSortChange = (option: string) => {
 		setSortOption(option);
@@ -49,8 +40,8 @@ export const ProductsList: React.FC<ProductsListProps> = ({ productsList }) => {
 					return 0;
 			}
 		});
-		setCurPage(0);
-		//setSortedList([...sorted]);
+		setCurPage(1);
+		setSortedList([...sorted]);
 		setCurPageItems(sorted.slice(0, ITEMS_PER_PAGE));
 	};
 
@@ -59,12 +50,10 @@ export const ProductsList: React.FC<ProductsListProps> = ({ productsList }) => {
 			const newPage = prevPage - 1;
 			const startIndex = (newPage - 1) * ITEMS_PER_PAGE;
 			const endIndex = newPage * ITEMS_PER_PAGE;
-			setCurPageItems(productsList.slice(startIndex, endIndex));
+			setCurPageItems(sortedList.slice(startIndex, endIndex));
 			return newPage;
 		});
 	};
-
-	console.log(productsList);
 
 	const handleClickNextPage = () => {
 		setCurPage((prevPage: number) => {
@@ -72,7 +61,7 @@ export const ProductsList: React.FC<ProductsListProps> = ({ productsList }) => {
 			const startIndex = prevPage * ITEMS_PER_PAGE;
 			const endIndex = (prevPage + 1) * ITEMS_PER_PAGE;
 
-			setCurPageItems(productsList.slice(startIndex, endIndex));
+			setCurPageItems(sortedList.slice(startIndex, endIndex));
 			return newPage;
 		});
 	};
