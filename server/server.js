@@ -1,59 +1,10 @@
 const express = require('express');
-const { ApolloServer, gql } = require('apollo-server-express');
-const axios = require('axios');
+const { ApolloServer } = require('apollo-server-express');
+const typeDefs = require('./graphql/typeDefs/typeDefs');
+const resolvers = require('./graphql/resolvers/resolvers');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
-
-// GraphQL schema
-const typeDefs = gql`
-	type Product {
-		id: String
-		currency: String
-		bedrooms: String
-		total_rent: String
-		area: String
-		url: String
-		title: String
-		city: String
-		street: String
-		description: String
-		pictures: [String]
-	}
-
-	type Query {
-		products: [Product]
-	}
-`;
-
-// GraphQL resolvers
-const resolvers = {
-	Query: {
-		products: async () => {
-			try {
-				const response = await axios.get(
-					'https://feeds.datafeedwatch.com/35132/f3b6e4d541f33f9dc433d024ecf6b1abf12d9488.json'
-				);
-				return response.data.products.map((product) => {
-					return {
-						id: product.id,
-						bedrooms: product.bedrooms,
-						total_rent: product.total_rent,
-						area: product.area,
-						url: product.url,
-						title: product.title,
-						city: product.city,
-						street: product.street,
-						pictures: [product.pictures1],
-					};
-				});
-			} catch (error) {
-				console.error(error);
-				return [];
-			}
-		},
-	},
-};
 
 // Function to start the server
 async function startServer() {

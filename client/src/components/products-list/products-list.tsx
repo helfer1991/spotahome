@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import type { Product } from './products-list-container';
 import { Container } from './styles';
 import { Table } from '../table/table';
@@ -22,6 +22,7 @@ export const ProductsList: React.FC<ProductsListProps> = ({ productsList }) => {
 		productsList,
 		sortOption as 'price' | 'title' | 'bedrooms' | ''
 	);
+
 	const {
 		handleClickPrevPage,
 		handleClickNextPage,
