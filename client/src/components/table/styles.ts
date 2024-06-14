@@ -53,7 +53,10 @@ export const Link = styled.a`
 	color: #3498db;
 	text-decoration: none;
 	&:hover {
-		text-decoration: underline;
+		text-decoration: none;
+	}
+	&:active {
+		text-decoration: none;
 	}
 `;
 

@@ -25,7 +25,7 @@ export const ProductsListContainer: React.FC = () => {
 	);
 
 	if (loading) return <TableSkeleton />;
-	if (error) return <p>Error :</p>;
+	if (error) return <p>Error</p>;
 	if (!data) {
 		return <p>Empty state</p>;
 	}

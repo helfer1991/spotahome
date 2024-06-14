@@ -16,7 +16,11 @@ import {
 
 import type { Product } from '../../products-list/products-list-container';
 
-export const Table: React.FC<{ data: Product[] }> = ({ data }) => (
+type TableProps = {
+	products: Array<Product>;
+};
+
+export const Table: React.FC<TableProps> = ({ products }) => (
 	<TableContainer>
 		<StyledTable>
 			<TableHead>
@@ -30,7 +34,7 @@ export const Table: React.FC<{ data: Product[] }> = ({ data }) => (
 				</tr>
 			</TableHead>
 			<TableBody>
-				{data.map((item, index) => (
+				{products.map((item, index) => (
 					<TableRow key={index}>
 						<TableCell>
 							<Image
@@ -56,7 +60,7 @@ export const Table: React.FC<{ data: Product[] }> = ({ data }) => (
 								target='_blank'
 								rel='noopener noreferrer'
 							>
-								Link
+								More info
 							</Link>
 						</TableCell>
 					</TableRow>
