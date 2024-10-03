@@ -27,7 +27,7 @@ export const useSort = (
 		};
 
 		sortList(sortOption);
-	}, [sortOption]);
+	}, [sortOption, productsList]);
 
 	return sortedList;
 };

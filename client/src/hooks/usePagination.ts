@@ -8,6 +8,8 @@ export const usePagination = (
 ) => {
 	const [curPage, setCurPage] = useState<number>(1);
 
+	//console.log(productsList);
+
 	useEffect(() => {
 		setCurPageItems(productsList.slice(0, ITEMS_PER_PAGE));
 		setCurPage(1);

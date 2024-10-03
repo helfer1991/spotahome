@@ -55,3 +55,5 @@ cd client
 npm install
 npm start
 npm test
+
+To deploy the application environment variables would have to be handled properly. Then a frontend build (using npm build) would have to be done. After that, Vercel could be an option to deploy everything,
